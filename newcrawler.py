@@ -28,7 +28,7 @@ import sys
 #--------------------------------------------------------------------------------#
 #********************************************************************************#
 
-##< instagram account info handler >##
+#<< instagram account info handler >>#
 
 InstaAccountFile = open("/Users/dragonheadreal/Documents/dragonnest/project/outsourcing/nextIEZ/password/password.csv", 'r', encoding='utf-8')
 rdr = csv.reader(InstaAccountFile)
@@ -44,28 +44,26 @@ InstaAccountFile.close()
 Instagram_id = lines[0]	### Essential
 Instagram_pw = linse[1]	### Essential
 
-##< list defined >##
+#<< List defined >>#
 tags_dataset = []
 csv_text = []
 
-##### Input string ####################
-##### type keyword without spacing ####
-keyword = 'honda'
+#<< Input string >>#
+keyword = 'honda'	### type keyword without spacing
 #index_num = sys.argv[2]
 
-###### csv reader for search keyword ######
-###### 작성해야됨
-######
+#<< CSV reader function for getting search keyword >>#
+## 작성해야됨
 
 
-###### target URL ######
+#<< Search target URL(Instagram) >>#
 url = "https://www.instagram.com/explore/tags/{}/".format(keyword)
 
-###### web driver loading part #####
+#<< Web driver(Chromedriver) >>#
 driver = wd.Chrome("/Users/dragonheadreal/Documents/dragonnest/project/outsourcing/nextIEZ/code/chromedriver/85.0.4183.121/chromedriver")
 driver.get(url)
 
-#<<<<< time sleeper >>>>>#
+#<< Description >>#
 print("###########################################################################")
 print("#--v.0.02-----------------------------------------------------------------#")
 print("#------------------------------ Instruction ------------------------------#")
@@ -76,9 +74,10 @@ print("#-----------------------------------------------------made by Dragonhead-
 print("###########################################################################")
 print(" ")
 print(" ")
+#<< Time sleeper(8sec) >>#
 time.sleep(8)
 
-##### popup remover ######
+#<< Popup remover >>#
 try:
 	if(driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div/div/button')!=None):
 		driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div/div/button').click()	
@@ -87,22 +86,19 @@ except:
 
 driver.find_element_by_css_selector('div.v1Nh3.kIKUG._bz0w').click()
 
-###### login screen detector ######
-#### Instagram Login handler ####
+#<< Login screen detector >>#
 try:
 	if(driver.find_element_by_name('username')!=None):
-		ac = driver.find_element_by_name('username')
+		ac = driver.find_element_by_name('username')	### Instagram ID insert
 		ac.clear()
-		###### Instagram ID insert ######
 		ac.send_keys(Instagram_id)
-		pw = driver.find_element_by_name('password')
+		pw = driver.find_element_by_name('password')	### Instagram PW insert
 		pw.clear()
-		###### Instagram PW insert ######
 		pw.send_keys(Instagram_pw)
 	
 		btn = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[2]/div/div/div[1]/div/form/div[4]/button")
 		btn.click()
-		#<<<<< time sleeper >>>>>#
+		#<< time sleeper(10sec) >>#
 		time.sleep(10)
 	
 except:
@@ -111,7 +107,7 @@ except:
 	print("---------------------------------------------------------------------------")
 	time.sleep(10)
 
-###### login save screen handler #####
+#<< Login save screen handler >>#
 try:
 	driver.find_element_by_css_selector('button.sqdOP.yWX7d.y3zKF').click()
 	time.sleep(6)
@@ -130,20 +126,19 @@ except:
 
 try:
     if(driver.find_element_by_name('username')!=None):
-        ac = driver.find_element_by_name('username')
+        ac = driver.find_element_by_name('username')	### Instagram ID insert
         ac.clear()
-        ###### Instagram ID insert ######
         ac.send_keys(Instagram_id)
-        pw = driver.find_element_by_name('password')
+        pw = driver.find_element_by_name('password')	### Instagram PW insert
         pw.clear()
-        ###### Instagram PW insert ######
         pw.send_keys(Instagram_pw)
 
         btn = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[2]/div/div/div[1]/div/form/div[4]/button")
         btn.click()
-        #<<<<< time sleeper >>>>>#
+        #<< time sleeper(7sec) >>#
         time.sleep(7)
 
+#<< Check there is no login screen >>#
 except:
     print("---------------------------------------------------------------------------")
     print('-------------------- There is no login process ----------------------------')
@@ -162,10 +157,10 @@ for i in range(30):
 	## 8. ucont : user content
 
 
-	#<<<<<< time sleeper >>>>>>#
+	#<< time sleeper >>#
 	try:
-		########### saving process #############
-		#### 01. saving user's name ############
+		#<< Saving process >>#
+		#<<< 01.Saving user's name >>>#
 		csv_text = []
 		csv_text.append(i)
 		print(" ")
@@ -179,21 +174,21 @@ for i in range(30):
 		print("--------user's profile linke :", purls)
 		print(" ")
 	
-		#### 02. saving post's link ############
+		#<<< 02.Saving post's link >>>#
 		print("saving", i, "post's link...")
 		plink = ins.get_post_link(driver)
 		csv_text.append(plink)
 		print("--------user's post link :", plink)
 		print(" ")
 	
-		#### 03. saving post update date #######
+		#<<< 03.Saving post update date >>>#
 		print("saving", i, "post's update date...")
 		pdate = ins.get_post_date(driver)
 		csv_text.append(pdate)
 		print("--------post is uploaded date :", pdate)
 		print(" ")
 		
-		#### 04. saving user's face photo link #
+		#<<< 04.Saving user's face photo link >>>#
 		time.sleep(5)
 		if i>=15:
 			print(purls)
@@ -201,35 +196,35 @@ for i in range(30):
 			print("loading next posting")
 			time.sleep(7)
 
-		#### 05. saving user's posting location #####
+		#<<< 05.Saving user's posting location >>>#
 		print("saving", i, "post's location...")
 		plocs = ins.get_user_locs(driver)
 		csv_text.append(plocs)
 		print("--------location :", plocs)
 		print(" ")
  	
-		#### 06. saving tags ###################
+		#<<< 06.Saving tags >>>#
 		print("saving", i, "post's tags")
 		plocs = ins.get_user_tags(driver)
 		csv_text.append(plocs)
 		
-		#### saving content ############
+		#<<< 07.Saving content >>>#
 		print("saving", i, "post's content")
 		plocs = ins.get_user_content(driver)
 		csv_text.append(plocs)
 
 	except EOFError:
-		###### saving exception handler ######
+		#<< saving exception handler >>#
 		print('please input saving exception handler code')
 		
 	try:
-		######### skip next page #############
+		#<< skip next page >>#
 		WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a._65Bje.coreSpriteRightPaginationArrow')))
 		driver.find_element_by_css_selector('a._65Bje.coreSpriteRightPaginationArrow').click()
 	except:
 		f.close()
 		driver.close() 
-	#<<<<< time sleeper >>>>>#
+	#<< time sleeper >>#
 	time.sleep(2)
 driver.close()
 
