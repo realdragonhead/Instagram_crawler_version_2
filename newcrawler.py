@@ -28,23 +28,35 @@ import sys
 #--------------------------------------------------------------------------------#
 #********************************************************************************#
 
+##< instagram account info handler >##
 
-### instagram account #### 
-Instagram_id = ""	###### Essential
-Instagram_pw = ""	###### Essential
+InstaAccountFile = open("/Users/dragonheadreal/Documents/dragonnest/project/outsourcing/nextIEZ/password/password.csv", 'r', encoding='utf-8')
+rdr = csv.reader(InstaAccountFile)
+lines = InstaAccountFile.readlines()
+account_index = []
 
-###### type defined #######
+#for i in lines: ### other way to read csv file
+#	account_index.append(i)
+#	print(i)
+
+InstaAccountFile.close()
+
+Instagram_id = lines[0]	### Essential
+Instagram_pw = linse[1]	### Essential
+
+##< list defined >##
 tags_dataset = []
 csv_text = []
 
 ##### Input string ####################
 ##### type keyword without spacing ####
-keyword = sys.argv[1]
-index_num = sys.argv[2]
+keyword = 'honda'
+#index_num = sys.argv[2]
 
-###### csv reader for tags name ######
+###### csv reader for search keyword ######
 ###### 작성해야됨
 ######
+
 
 ###### target URL ######
 url = "https://www.instagram.com/explore/tags/{}/".format(keyword)
@@ -205,10 +217,6 @@ for i in range(30):
 		print("saving", i, "post's content")
 		plocs = ins.get_user_content(driver)
 		csv_text.append(plocs)
-
-
-
-
 
 	except EOFError:
 		###### saving exception handler ######
