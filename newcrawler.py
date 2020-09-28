@@ -30,8 +30,8 @@ import sys
 
 
 ### instagram account #### 
-Instagram_id = "offend1ng02007"	###### Essential
-Instagram_pw = "!have0cash"	###### Essential
+Instagram_id = ""	###### Essential
+Instagram_pw = ""	###### Essential
 
 ###### type defined #######
 tags_dataset = []
