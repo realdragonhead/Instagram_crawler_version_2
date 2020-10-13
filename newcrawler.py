@@ -175,6 +175,7 @@ for i in range(30):
 		csv_text.append(pname)
 		csv_text.append(purls)
 		print("--------user's name :", pname)
+		print(" ")
 		print("--------user's profile linke :", purls)
 		print(" ")
 	
@@ -201,13 +202,17 @@ for i in range(30):
  	
 		#<<< 05.Saving tags >>>#
 		print("saving", i, "post's tags")
-		plocs = ins.get_post_tags(driver)
-		csv_text.append(plocs)
+		ptags = ins.get_post_tags(driver)
+		csv_text.append(ptags)
+		print("--------post's tags...", ptags)
+		print(" ")
 		
 		#<<< 06.Saving content >>>#
 		print("saving", i, "post's content")
-		plocs = ins.get_post_content(driver)
-		csv_text.append(plocs)
+		pcont = ins.get_post_content(driver)
+		csv_text.append(pcont)
+		print("--------post's content", pcont)
+		print(" ")
 
 	except EOFError:
 		#<< saving exception handler >>#
