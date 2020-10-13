@@ -42,7 +42,7 @@ account_index = []
 InstaAccountFile.close()
 
 Instagram_id = lines[0]	### Essential
-Instagram_pw = linse[1]	### Essential
+Instagram_pw = lines[1]	### Essential
 
 #<< List defined >>#
 tags_dataset = []
@@ -59,8 +59,12 @@ keyword = 'honda'	### type keyword without spacing
 #<< Search target URL(Instagram) >>#
 url = "https://www.instagram.com/explore/tags/{}/".format(keyword)
 
+#<< To ignore certificate error >>
+options = wd.ChromeOptions()
+options.add_argument('ignore-certificate-errors')
+
 #<< Web driver(Chromedriver) >>#
-driver = wd.Chrome("/Users/dragonheadreal/Documents/dragonnest/project/outsourcing/nextIEZ/code/chromedriver/85.0.4183.121/chromedriver")
+driver = wd.Chrome("/Users/dragonheadreal/Documents/dragonnest/project/outsourcing/nextIEZ/code/chromedriver/86.0.4240.22/chromedriver", chrome_options=options)
 driver.get(url)
 
 #<< Description >>#
@@ -188,27 +192,19 @@ for i in range(30):
 		print("--------post is uploaded date :", pdate)
 		print(" ")
 		
-		#<<< 04.Saving user's face photo link >>>#
-		time.sleep(5)
-		if i>=15:
-			print(purls)
-			ulink = ins.get_user_face(keyword, index_num, driver, purls)
-			print("loading next posting")
-			time.sleep(7)
-
-		#<<< 05.Saving user's posting location >>>#
+		#<<< 04.Saving user's posting location >>>#
 		print("saving", i, "post's location...")
 		plocs = ins.get_user_locs(driver)
 		csv_text.append(plocs)
 		print("--------location :", plocs)
 		print(" ")
  	
-		#<<< 06.Saving tags >>>#
+		#<<< 05.Saving tags >>>#
 		print("saving", i, "post's tags")
 		plocs = ins.get_user_tags(driver)
 		csv_text.append(plocs)
 		
-		#<<< 07.Saving content >>>#
+		#<<< 06.Saving content >>>#
 		print("saving", i, "post's content")
 		plocs = ins.get_user_content(driver)
 		csv_text.append(plocs)
