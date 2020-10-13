@@ -201,12 +201,12 @@ for i in range(30):
  	
 		#<<< 05.Saving tags >>>#
 		print("saving", i, "post's tags")
-		plocs = ins.get_user_tags(driver)
+		plocs = ins.get_post_tags(driver)
 		csv_text.append(plocs)
 		
 		#<<< 06.Saving content >>>#
 		print("saving", i, "post's content")
-		plocs = ins.get_user_content(driver)
+		plocs = ins.get_post_content(driver)
 		csv_text.append(plocs)
 
 	except EOFError:

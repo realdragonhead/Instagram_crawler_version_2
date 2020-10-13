@@ -14,7 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 #---- 3. get_post_date(driver)
 #---- 4. get_user_locs(driver)
 #---- 5. get_post_tags(driver)
-#---- 6. get_user_tags(driver) ****
+#---- 6. get_post_content(driver)
 #---- 7. cut_user_name(driver)
 #---- 8. remove_hashtag(target_list)
 
@@ -64,6 +64,16 @@ def get_post_tags(driver):
 		return tags_result
 	except:
 		return " "
+
+# saving all content in post
+def get_post_content(driver):
+	try:
+		target = driver.find_element_by_css_selector('body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk > ul > div > li > div > div > div.C4VMK > span')
+		post_content = target.get_attribute('text')
+		return post_content
+	except:
+		return " "
+	
 
 # extract user's name from user's profile linke
 def cut_user_name(name):
