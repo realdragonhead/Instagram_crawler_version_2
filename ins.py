@@ -14,8 +14,9 @@ from selenium.webdriver.support import expected_conditions as EC
 #---- 3. get_post_date(driver)
 #---- 4. get_user_locs(driver)
 #---- 5. get_post_tags(driver)
-#---- 6. cut_user_name(driver)
-#---- 7. remove_hashtag(target_list)
+#---- 6. get_user_tags(driver) ****
+#---- 7. cut_user_name(driver)
+#---- 8. remove_hashtag(target_list)
 
 # saving user's name
 def get_user_name(driver):

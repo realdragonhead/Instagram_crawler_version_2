@@ -151,14 +151,14 @@ except:
 
 
 for i in range(30):
-	## variable list
-	## 1. pname : user's name
-	## 2. purls : user's profile link
-	## 3. plink : post's link
-	## 4. pdate : every single post uploaded date
-	## 6. ulocs : user's posting location
-	## 7. ptags : tags data set every single post
-	## 8. ucont : user content
+	#---- variable list
+	#---- 1. pname : user's name
+	#---- 2. purls : user's profile link
+	#---- 3. plink : post's link
+	#---- 4. pdate : every single post uploaded date
+	#---- 6. ulocs : user's posting location
+	#---- 7. ptags : tags data set every single post
+	#---- 8. ucont : user content
 
 
 	#<< time sleeper >>#
