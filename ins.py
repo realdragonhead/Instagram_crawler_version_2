@@ -68,8 +68,8 @@ def get_post_tags(driver):
 # saving all content in post
 def get_post_content(driver):
 	try:
-		target = driver.find_element_by_css_selector('body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk > ul > div > li > div > div > div.C4VMK > span')
-		post_content = target.get_attribute('text')
+		target = driver.find_element_by_xpath('/html/body/div[4]/div[2]/div/article/div[3]/div[1]/ul/div/li/div/div/div[2]/span')
+		post_content = target.text
 		return post_content
 	except:
 		return " "
