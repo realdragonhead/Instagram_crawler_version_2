@@ -171,6 +171,14 @@ for i in range(30):
 		#<<< Step 1 : Saving user's name >>>#
 		csv_text = []
 		csv_text.append(i)
+		
+		plink = ins.get_post_link(driver)	# saving post's url
+		docid = ins.get_post_id(plink)
+
+		#/////// handler determine docid is existing in keyword folder
+
+		#///////
+
 		print(" ")
 		print("saving", i, "post's user name and user profile link...")
 		time.sleep(3)
@@ -181,10 +189,8 @@ for i in range(30):
 		print("--------user's name :", pname)
 		print("--------user's profile linke :", purls)
 	
-		#<<< Step 2 : Saving post's link and Extracting document id >>>#
+		#<<< Step 2 : Printing post's link and extracted document id >>>#
 		print("saving", i, "post's link and document id...")
-		plink = ins.get_post_link(driver)
-		docid = ins.get_post_id(plink)
 		csv_text.append(plink)
 		csv_text.append(docid)
 		print("--------user's post link :", plink)
@@ -206,15 +212,16 @@ for i in range(30):
 		print("saving", i, "post's tags")
 		ptags = ins.get_post_tags(driver)
 		csv_text.append(ptags)
-		print("--------post's tags...", ptags)
+		print("--------post's tags...")
+		print(ptags)
 		
 		#<<< Step 6 : Saving content >>>#
 		print("saving", i, "post's content")
 		pcont = ins.get_post_content(driver)
 		csv_text.append(pcont)
-		print("--------post's content", pcont)
-		print(" ")
-		print(" ")
+		print("--------post's content")
+		print(pcont)
+		print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
 
 	except EOFError:
 		#<< Saving exception handler >>#
