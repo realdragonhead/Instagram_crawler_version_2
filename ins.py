@@ -41,7 +41,7 @@ def get_post_link(driver):
 def get_post_id(document_link):
 	try:
 		document_id = document_link.replace('https://www.instagram.com/p/', '')
-		document_id = document_link.replace('/', '')
+		document_id = document_id.replace('/', '')
 		return document_id
 	except:
 		return " "
@@ -51,6 +51,10 @@ def get_post_date(driver):
 	try:
 		target = driver.find_element_by_css_selector('time.FH9sR.Nzb55')
 		date_result = target.get_attribute('datetime')
+		date_result = date_result.replace('-', '')
+		date_result = date_result.replace('T', '')
+		date_result = date_result.replace(':', '')
+		date_result = date_result.replace('.000Z', '')
 		return date_result 
 	except:
 		return " "
