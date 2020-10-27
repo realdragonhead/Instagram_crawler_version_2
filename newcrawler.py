@@ -30,7 +30,7 @@ import sys
 
 #<< instagram account info handler >>#
 
-InstaAccountFile = open("/Users/dragonheadreal/Documents/dragonnest/project/outsourcing/nextIEZ/password/password.csv", 'r', encoding='utf-8')
+InstaAccountFile = open("../password/password.csv", 'r', encoding='utf-8')
 rdr = csv.reader(InstaAccountFile)
 lines = InstaAccountFile.readlines()
 account_index = []
@@ -41,20 +41,24 @@ account_index = []
 
 InstaAccountFile.close()
 
+#<< Account Info >>#
+# make password.csv file in ../password/
 Instagram_id = lines[0]	### Essential
 Instagram_pw = lines[1]	### Essential
 
 #<< List defined >>#
-tags_dataset = []
-csv_text = []
+tags_dataset = []	# for tags saving
+csv_text = []		# for handle csv text
 
 #<< Input string >>#
 keyword = 'honda'	### type keyword without spacing
 #index_num = sys.argv[2]
 
+#%%%%%%%%
+#&&&&&&&&	replace with automatic keyword input
+#%%%$$%$$
 #<< CSV reader function for getting search keyword >>#
 ## 작성해야됨
-
 
 #<< Search target URL(Instagram) >>#
 url = "https://www.instagram.com/explore/tags/{}/".format(keyword)
@@ -64,7 +68,7 @@ options = wd.ChromeOptions()
 options.add_argument('ignore-certificate-errors')
 
 #<< Web driver(Chromedriver) >>#
-driver = wd.Chrome("/Users/dragonheadreal/Documents/dragonnest/project/outsourcing/nextIEZ/code/chromedriver/86.0.4240.22/chromedriver", chrome_options=options)
+driver = wd.Chrome("./chromedriver/86.0.4240.22/chromedriver", chrome_options=options)
 driver.get(url)
 
 #<< Description >>#
@@ -152,19 +156,19 @@ except:
 
 for i in range(30):
 	#---- variable list
-	#---- 1. pname : user's name
-	#---- 2. purls : user's profile link
-	#---- 3. plink : post's link
-	#---- 4. pdate : every single post uploaded date
-	#---- 6. ulocs : user's posting location
-	#---- 7. ptags : tags data set every single post
-	#---- 8. ucont : user content
-
+	#---- 1. pname : User's name
+	#---- 2. purls : User's profile link
+	#---- 3. plink : Post's link
+	#---- 4. pdate : Every single post uploaded date
+	#---- 6. ulocs : User's posting location
+	#---- 7. ptags : Tags data set every single post
+	#---- 8. ucont : User content
+	#---- 9. docid : Document id
 
 	#<< time sleeper >>#
 	try:
 		#<< Saving process >>#
-		#<<< 01.Saving user's name >>>#
+		#<<< Step 1 : Saving user's name >>>#
 		csv_text = []
 		csv_text.append(i)
 		print(" ")
@@ -179,35 +183,35 @@ for i in range(30):
 		print("--------user's profile linke :", purls)
 		print(" ")
 	
-		#<<< 02.Saving post's link >>>#
+		#<<< Step 2 : Saving post's link >>>#
 		print("saving", i, "post's link...")
 		plink = ins.get_post_link(driver)
 		csv_text.append(plink)
 		print("--------user's post link :", plink)
 		print(" ")
 	
-		#<<< 03.Saving post update date >>>#
+		#<<< Step 3 : Saving post update date >>>#
 		print("saving", i, "post's update date...")
 		pdate = ins.get_post_date(driver)
 		csv_text.append(pdate)
 		print("--------post is uploaded date :", pdate)
 		print(" ")
 		
-		#<<< 04.Saving user's posting location >>>#
+		#<<< Step 4 : Saving user's posting location >>>#
 		print("saving", i, "post's location...")
 		plocs = ins.get_user_locs(driver)
 		csv_text.append(plocs)
 		print("--------location :", plocs)
 		print(" ")
  	
-		#<<< 05.Saving tags >>>#
+		#<<< Step 5 : Saving tags >>>#
 		print("saving", i, "post's tags")
 		ptags = ins.get_post_tags(driver)
 		csv_text.append(ptags)
 		print("--------post's tags...", ptags)
 		print(" ")
 		
-		#<<< 06.Saving content >>>#
+		#<<< Step 6 : Saving content >>>#
 		print("saving", i, "post's content")
 		pcont = ins.get_post_content(driver)
 		csv_text.append(pcont)
@@ -215,17 +219,17 @@ for i in range(30):
 		print(" ")
 
 	except EOFError:
-		#<< saving exception handler >>#
+		#<< Saving exception handler >>#
 		print('please input saving exception handler code')
 		
 	try:
-		#<< skip next page >>#
+		#<< Skip next page >>#
 		WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a._65Bje.coreSpriteRightPaginationArrow')))
 		driver.find_element_by_css_selector('a._65Bje.coreSpriteRightPaginationArrow').click()
 	except:
 		f.close()
 		driver.close() 
-	#<< time sleeper >>#
+	#<< Time sleeper >>#
 	time.sleep(2)
 driver.close()
 
