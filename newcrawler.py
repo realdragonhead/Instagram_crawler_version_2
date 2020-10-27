@@ -11,6 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from urllib.request import Request, urlopen
 import time
+import datetime
 import re
 import pandas as pd
 import csv
@@ -156,72 +157,76 @@ except:
 
 for i in range(30):
 	#---- variable list
-	#---- 1. pname : User's name
-	#---- 2. purls : User's profile link
-	#---- 3. plink : Post's link
-	#---- 4. pdate : Every single post uploaded date
-	#---- 6. ulocs : User's posting location
-	#---- 7. ptags : Tags data set every single post
-	#---- 8. ucont : User content
-	#---- 9. docid : Document id
+	#----  1. pname : User's name
+	#----  2. purls : User's profile link
+	#----  3. plink : Post's link
+	#----  4. pdate : Every single post uploaded date
+	#----  6. ulocs : User's posting location
+	#----  7. ptags : Tags data set every single post
+	#----  8. ucont : User content
+	#----  9. docid : Document id
+	#---- 10. cdate : crawled date
 
 	#<< time sleeper >>#
 	try:
 		#<< Saving process >>#
-		#<<< Step 1 : Saving user's name >>>#
 		csv_text = []
 		csv_text.append(i)
 		
-		plink = ins.get_post_link(driver)	# saving post's url
-		docid = ins.get_post_id(plink)
-
+		#<sub< Get post's url and extracting document id from url >>#
+		plink = ins.get_post_link(driver)	# Get post's url
+		docid = ins.get_post_id(plink)		# Extracting docid from url
+		csv_text.append(docid)
 		#/////// handler determine docid is existing in keyword folder
 
-		#///////
+		print("Document id is ", docid)
 
-		print(" ")
-		print("saving", i, "post's user name and user profile link...")
+		#<<< Step 1 : Extracting user's name >>>#
+		print("Extracting", i, "post's user name and user profile link...")
 		time.sleep(3)
 		purls = ins.get_user_name(driver)
 		pname = ins.cut_user_name(purls)
 		csv_text.append(pname)
 		csv_text.append(purls)
-		print("--------user's name :", pname)
-		print("--------user's profile linke :", purls)
+		print("--------Publisher : ", pname)
+		print("--------Publisher profile link : ", purls)
 	
 		#<<< Step 2 : Printing post's link and extracted document id >>>#
-		print("saving", i, "post's link and document id...")
 		csv_text.append(plink)
-		csv_text.append(docid)
-		print("--------user's post link :", plink)
-		print("--------user's document id :", docid)
+		print("--------Post link : ", plink)
+		print("--------Document id : ", docid)
 	
-		#<<< Step 3 : Saving post update date >>>#
-		print("saving", i, "post's update date...")
+		#<<< Step 3 : Extracting post uploaded, crawled date and time >>>#
 		pdate = ins.get_post_date(driver)
 		csv_text.append(pdate)
-		print("--------post is uploaded date :", pdate)
 		
-		#<<< Step 4 : Saving user's posting location >>>#
-		print("saving", i, "post's location...")
+		today = datetime.datetime.now()		# for extracting crawled date and time
+		date_format = "%Y%m%d%H%M%S"
+		cdate = today.strftime(date_format)
+		csv_text.append(cdate)
+		print("--------Publish date : ", pdate)
+		print("--------Crawled date : ", cdate)
+		
+		#<<< Step 4 : Extracting user's posting location >>>#
 		plocs = ins.get_user_locs(driver)
 		csv_text.append(plocs)
-		print("--------location :", plocs)
+		print("--------Location : ", plocs)
  	
-		#<<< Step 5 : Saving tags >>>#
-		print("saving", i, "post's tags")
+		#<<< Step 5 : Extracting tags >>>#
 		ptags = ins.get_post_tags(driver)
 		csv_text.append(ptags)
-		print("--------post's tags...")
+		print("--------Tags List")
 		print(ptags)
 		
-		#<<< Step 6 : Saving content >>>#
-		print("saving", i, "post's content")
+		#<<< Step 6 : Extracting content >>>#
 		pcont = ins.get_post_content(driver)
 		csv_text.append(pcont)
-		print("--------post's content")
+		print("--------Content")
 		print(pcont)
-		print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+
+		print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+		print("")
+		print("")
 
 	except EOFError:
 		#<< Saving exception handler >>#
