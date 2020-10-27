@@ -40,7 +40,8 @@ def get_post_link(driver):
 # extract document id from post's link
 def get_post_id(document_link):
 	try:
-		document_id = document_link.replace('https://instagram.com/p/', '')
+		document_id = document_link.replace('https://www.instagram.com/p/', '')
+		document_id = document_link.replace('/', '')
 		return document_id
 	except:
 		return " "
