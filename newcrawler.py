@@ -179,43 +179,41 @@ for i in range(30):
 		csv_text.append(pname)
 		csv_text.append(purls)
 		print("--------user's name :", pname)
-		print(" ")
 		print("--------user's profile linke :", purls)
-		print(" ")
 	
-		#<<< Step 2 : Saving post's link >>>#
-		print("saving", i, "post's link...")
+		#<<< Step 2 : Saving post's link and Extracting document id >>>#
+		print("saving", i, "post's link and document id...")
 		plink = ins.get_post_link(driver)
+		docid = ins.get_post_id(plink)
 		csv_text.append(plink)
+		csv_text.append(docid)
 		print("--------user's post link :", plink)
-		print(" ")
+		print("--------user's document id :", docid)
 	
 		#<<< Step 3 : Saving post update date >>>#
 		print("saving", i, "post's update date...")
 		pdate = ins.get_post_date(driver)
 		csv_text.append(pdate)
 		print("--------post is uploaded date :", pdate)
-		print(" ")
 		
 		#<<< Step 4 : Saving user's posting location >>>#
 		print("saving", i, "post's location...")
 		plocs = ins.get_user_locs(driver)
 		csv_text.append(plocs)
 		print("--------location :", plocs)
-		print(" ")
  	
 		#<<< Step 5 : Saving tags >>>#
 		print("saving", i, "post's tags")
 		ptags = ins.get_post_tags(driver)
 		csv_text.append(ptags)
 		print("--------post's tags...", ptags)
-		print(" ")
 		
 		#<<< Step 6 : Saving content >>>#
 		print("saving", i, "post's content")
 		pcont = ins.get_post_content(driver)
 		csv_text.append(pcont)
 		print("--------post's content", pcont)
+		print(" ")
 		print(" ")
 
 	except EOFError:

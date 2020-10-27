@@ -11,12 +11,13 @@ from selenium.webdriver.support import expected_conditions as EC
 #---- Function list
 #---- 1. get_user_name(driver)
 #---- 2. get_post_link(driver)
-#---- 3. get_post_date(driver)
-#---- 4. get_user_locs(driver)
-#---- 5. get_post_tags(driver)
-#---- 6. get_post_content(driver)
-#---- 7. cut_user_name(driver)
-#---- 8. remove_hashtag(target_list)
+#---- 3. get_post_id(document_link)
+#---- 4. get_post_date(driver)
+#---- 5. get_user_locs(driver)
+#---- 6. get_post_tags(driver)
+#---- 7. get_post_content(driver)
+#---- 8. cut_user_name(driver)
+#---- 9. remove_hashtag(target_list)
 
 # saving user's name
 def get_user_name(driver):
@@ -33,6 +34,14 @@ def get_post_link(driver):
 		target = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a')
 		link_result = target.get_attribute('href')
 		return link_result 
+	except:
+		return " "
+
+# extract document id from post's link
+def get_post_id(document_link):
+	try:
+		document_id = document_link.replace('https://instagram.com/p/', '')
+		return document_id
 	except:
 		return " "
 
