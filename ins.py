@@ -71,8 +71,8 @@ def get_user_locs(driver):
 # Extract post's like count
 def get_post_like(driver):
 	try:
-		target = driver.find_element_by_xpath('/html/body/div[6]/div[2]/div/article/div[3]/section[2]/div/div/button/span')
-		like_result = target.get_attribute('text')
+		target = driver.find_element_by_css_selector('.Nm9Fw').find_element_by_css_selector('.sqdOP.yWX7d._8A5w5').find_element_by_tag_name('span')
+		like_result = target.text
 		return like_result
 	except:
 		return " "
