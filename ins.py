@@ -9,17 +9,18 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 #---- Function list
-#---- 1. get_user_name(driver)
-#---- 2. get_post_link(driver)
-#---- 3. get_post_id(document_link)
-#---- 4. get_post_date(driver)
-#---- 5. get_user_locs(driver)
-#---- 6. get_post_tags(driver)
-#---- 7. get_post_content(driver)
-#---- 8. cut_user_name(driver)
-#---- 9. remove_hashtag(target_list)
+#----  1. get_user_name(driver)
+#----  2. get_post_link(driver)
+#----  3. get_post_id(document_link)
+#----  4. get_post_date(driver)
+#----  5. get_user_locs(driver)
+#----  6. get_post_tags(driver)
+#----  7. get_post_content(driver)
+#----  8. get_post_like(driver)
+#----  9. cut_user_name(driver)
+#---- 10. remove_hashtag(target_list)
 
-# saving user's name
+# Extract user's name
 def get_user_name(driver):
 	try:
 		target = driver.find_element_by_css_selector('.sqdOP.yWX7d._8A5w5.ZIAjV')
@@ -28,7 +29,7 @@ def get_user_name(driver):
 	except:
 		return " "
 
-# saving post's link
+# Extract post's link
 def get_post_link(driver):
 	try:
 		target = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a')
@@ -37,7 +38,7 @@ def get_post_link(driver):
 	except:
 		return " "
 
-# extract document id from post's link
+# Extract document id from post's link
 def get_post_id(document_link):
 	try:
 		document_id = document_link.replace('https://www.instagram.com/p/', '')
@@ -46,7 +47,7 @@ def get_post_id(document_link):
 	except:
 		return " "
 
-# saving post's uploaded date
+# Extract post's uploaded date
 def get_post_date(driver):
 	try:
 		target = driver.find_element_by_css_selector('time.FH9sR.Nzb55')
@@ -59,7 +60,7 @@ def get_post_date(driver):
 	except:
 		return " "
 
-#saving user's location
+# Extract user's location
 def get_user_locs(driver):
 	try:
 		target = driver.find_element_by_css_selector('a.O4GlU')
@@ -68,7 +69,7 @@ def get_user_locs(driver):
 	except:
 		return " "
 
-# saving post's tag's in array
+# Extract post's tag's in array
 def get_post_tags(driver):
 	try:
 		target = driver.find_element_by_css_selector('.C7I1f.X7jCj')
@@ -79,7 +80,7 @@ def get_post_tags(driver):
 	except:
 		return " "
 
-# saving all content in post
+# Extract all content in post
 def get_post_content(driver):
 	try:
 		target = driver.find_element_by_xpath('/html/body/div[4]/div[2]/div/article/div[3]/div[1]/ul/div/li/div/div/div[2]/span')
@@ -89,11 +90,11 @@ def get_post_content(driver):
 		return " "
 	
 
-# extract user's name from user's profile linke
+# Extract user's name from user's profile linke
 def cut_user_name(name):
 	return name[26:-1]
 
-# removing hashtag in text
+# Remove hashtag simbol in text
 def remove_hashtag(target_list):
 	removed_result  = []
 	tags_temp = ''.join(target_list).replace("#", " ")
