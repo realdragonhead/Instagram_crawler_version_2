@@ -69,6 +69,15 @@ def get_user_locs(driver):
 	except:
 		return " "
 
+# Extract post's like count
+def get_post_like(driver):
+	try:
+		target = driver.find_element_by_css_selector('')
+		like_result = target.get_attribute('text')
+		return like_result
+	except:
+		return " "
+
 # Extract post's tag's in array
 def get_post_tags(driver):
 	try:
