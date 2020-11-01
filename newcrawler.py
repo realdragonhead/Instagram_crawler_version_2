@@ -234,13 +234,13 @@ for i in range(30):
 		csv_text.append(plike)
 		print("--------Like count : ", plike)
  	
-		#<<< Step 5 : Extract tags >>>#
+		#<<< Step 6 : Extract tags >>>#
 		ptags = ins.get_post_tags(driver)
 		csv_text.append(ptags)
 		print("--------Tags List")
 		print(ptags)
 		
-		#<<< Step 6 : Extract content >>>#
+		#<<< Step 7 : Extract content >>>#
 		pcont = ins.get_post_content(driver)
 		csv_text.append(pcont)
 		print("--------Content")
