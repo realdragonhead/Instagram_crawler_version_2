@@ -32,8 +32,7 @@ def get_user_name(driver):
 # Extract post's link
 def get_post_link(driver):
 	try:
-		target = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a')
-		link_result = target.get_attribute('href')
+		link_result = driver.current_url
 		return link_result 
 	except:
 		return " "
@@ -72,7 +71,7 @@ def get_user_locs(driver):
 # Extract post's like count
 def get_post_like(driver):
 	try:
-		target = driver.find_element_by_css_selector('')
+		target = driver.find_element_by_xpath('/html/body/div[6]/div[2]/div/article/div[3]/section[2]/div/div/button/span')
 		like_result = target.get_attribute('text')
 		return like_result
 	except:
@@ -92,13 +91,12 @@ def get_post_tags(driver):
 # Extract all content in post
 def get_post_content(driver):
 	try:
-		target = driver.find_element_by_xpath('/html/body/div[4]/div[2]/div/article/div[3]/div[1]/ul/div/li/div/div/div[2]/span')
+		target = driver.find_element_by_css_selector('.C4VMK').find_elements_by_tag_name('span')[1]
 		post_content = target.text
 		return post_content
 	except:
 		return " "
 	
-
 # Extract user's name from user's profile linke
 def cut_user_name(name):
 	return name[26:-1]
