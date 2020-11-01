@@ -167,6 +167,22 @@ for i in range(30):
 	#----  9. docid : Document id
 	#---- 10. cdate : crawled date
 
+	#  suggestion
+	#  <DOCID>			------------>	<docid>
+	#  <SOURCE>			------------>	"SNS"
+	#  <SECTION>		------------>	"Instagram"
+	#  <KEYWORD>		------------>	<ptags> except "'" and "," and "[" and "]"
+	#  <REF_URL>		------------>	https://www.instagram.com/explore/tags/<keyword>
+	#  <URL>			------------>	<plink>
+	#  <TITLE>			------------>	?
+	#  <CONTENT>		------------>	<ucont>
+	#  <PUBLISHER>		------------>	<pname>
+	#  <PUBLISH_DT>		------------>	<pdate>
+	#  <CRAWL_DT>		------------>	<cdate>
+	#  <ATTACH_NAME>	------------>	image url -> problem : expire problem
+	#  <ATTACH_CONTENT> ------------>	
+	#  <TERMS>			------------>	?
+
 	#<< time sleeper >>#
 	try:
 		#<< Saving process >>#
