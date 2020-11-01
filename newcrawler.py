@@ -163,9 +163,10 @@ for i in range(30):
 	#----  4. pdate : Every single post uploaded date
 	#----  6. ulocs : User's posting location
 	#----  7. ptags : Tags data set every single post
-	#----  8. ucont : User content
-	#----  9. docid : Document id
-	#---- 10. cdate : crawled date
+	#----  8. pcont : Post's content
+	#----  9. plike : Post's like count
+	#---- 10. docid : Document id
+	#---- 11. cdate : crawled date
 
 	#  suggestion
 	#  <DOCID>			------------>	<docid>
@@ -197,7 +198,7 @@ for i in range(30):
 
 		print("Document id is ", docid)
 
-		#<<< Step 1 : Extracting user's name >>>#
+		#<<< Step 1 : Extract user's name >>>#
 		print("Extracting", i, "post's user name and user profile link...")
 		time.sleep(3)
 		purls = ins.get_user_name(driver)
@@ -207,12 +208,12 @@ for i in range(30):
 		print("--------Publisher : ", pname)
 		print("--------Publisher profile link : ", purls)
 	
-		#<<< Step 2 : Printing post's link and extracted document id >>>#
+		#<<< Step 2 : Print post's link and extracted document id >>>#
 		csv_text.append(plink)
 		print("--------Post link : ", plink)
 		print("--------Document id : ", docid)
 	
-		#<<< Step 3 : Extracting post uploaded, crawled date and time >>>#
+		#<<< Step 3 : Extract post uploaded, crawled date and time >>>#
 		pdate = ins.get_post_date(driver)
 		csv_text.append(pdate)
 		
@@ -223,29 +224,33 @@ for i in range(30):
 		print("--------Publish date : ", pdate)
 		print("--------Crawled date : ", cdate)
 		
-		#<<< Step 4 : Extracting user's posting location >>>#
+		#<<< Step 4 : Extract user's posting location >>>#
 		plocs = ins.get_user_locs(driver)
 		csv_text.append(plocs)
 		print("--------Location : ", plocs)
+		
+		#<<< Step 5 : Extract post's like count >>>#
+		plike = ins.get_post_like(driver)
+		csv_text.append(plike)
+		print("--------Like count : ", plike)
  	
-		#<<< Step 5 : Extracting tags >>>#
+		#<<< Step 5 : Extract tags >>>#
 		ptags = ins.get_post_tags(driver)
 		csv_text.append(ptags)
 		print("--------Tags List")
 		print(ptags)
 		
-		#<<< Step 6 : Extracting content >>>#
+		#<<< Step 6 : Extract content >>>#
 		pcont = ins.get_post_content(driver)
 		csv_text.append(pcont)
 		print("--------Content")
 		print(pcont)
-
 		print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 		print("")
 		print("")
 
 	except EOFError:
-		#<< Saving exception handler >>#
+		#<< Extracting exception handler >>#
 		print('please input saving exception handler code')
 		
 	try:
