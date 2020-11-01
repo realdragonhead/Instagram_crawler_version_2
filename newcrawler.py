@@ -53,13 +53,12 @@ csv_text = []		# for handle csv text
 
 #<< Input string >>#
 keyword = 'honda'	### type keyword without spacing
-#index_num = sys.argv[2]
 
 #%%%%%%%%
 #&&&&&&&&	replace with automatic keyword input
 #%%%$$%$$
 #<< CSV reader function for getting search keyword >>#
-## 작성해야됨
+## 작성해야됨. 전체 루프로 돌릴껀지 결정
 
 #<< Search target URL(Instagram) >>#
 url = "https://www.instagram.com/explore/tags/{}/".format(keyword)
