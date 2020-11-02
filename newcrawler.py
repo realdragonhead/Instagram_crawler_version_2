@@ -17,6 +17,7 @@ import pandas as pd
 import csv
 import ins
 import sys
+import os
 
 #*********************************** USAGE **************************************#
 #--------------------------------------------------------------------------------#
@@ -30,7 +31,6 @@ import sys
 #********************************************************************************#
 
 #<< instagram account info handler >>#
-
 InstaAccountFile = open("../password/password.csv", 'r', encoding='utf-8')
 rdr = csv.reader(InstaAccountFile)
 lines = InstaAccountFile.readlines()
@@ -153,6 +153,12 @@ except:
     print("---------------------------------------------------------------------------")
     time.sleep(5)
 
+try:
+	folder_path = "../SCD/" + keyword
+	if not(os.path.exists(folder_path)):
+		os.makedirs(folder_path)
+except OSError:
+	print('Error: Cannot creating directory path is ' + folder_path)
 
 for i in range(30):
 	#---- variable list
@@ -183,17 +189,23 @@ for i in range(30):
 	#  <ATTACH_CONTENT> ------------>	
 	#  <TERMS>			------------>	?
 
-	#<< time sleeper >>#
 	try:
+		exist = 0
 		#<< Saving process >>#
 		csv_text = []
 		csv_text.append(i)
-		
+
 		#<sub< Get post's url and extracting document id from url >>#
 		plink = ins.get_post_link(driver)	# Get post's url
 		docid = ins.get_post_id(plink)		# Extracting docid from url
 		csv_text.append(docid)
-		#/////// handler determine docid is existing in keyword folder
+
+		#<< File open and check same docid >>#
+		file_name = "../SCD/" + keyword + "/" + docid + ".SCD"
+		if not(os.path.isfile(file_name)):
+			new_file = open(file_name, 'w')
+		else:
+			exist = 1
 
 		print("Document id is ", docid)
 
@@ -248,6 +260,13 @@ for i in range(30):
 		print("")
 		print("")
 
+		if (exist == 0):
+			#<< Saving to file >>#
+			new_file.close()
+		else:
+			#<< Skip >>#
+			`
+
 	except EOFError:
 		#<< Extracting exception handler >>#
 		print('please input saving exception handler code')
@@ -262,5 +281,3 @@ for i in range(30):
 	#<< Time sleeper >>#
 	time.sleep(2)
 driver.close()
-
-
