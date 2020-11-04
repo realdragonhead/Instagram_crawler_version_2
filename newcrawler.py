@@ -188,6 +188,13 @@ for i in range(30):
 	#  <ATTACH_NAME>	------------>	image url -> problem : expire problem
 	#  <ATTACH_CONTENT> ------------>	
 	#  <TERMS>			------------>	?
+	
+	#<< initialize variable for write >>#
+	docid = ''
+	source = ''
+	ref_url = ''
+	title = ''
+	attach_name = ''
 
 	try:
 		exist = 0
@@ -261,11 +268,39 @@ for i in range(30):
 		print("")
 
 		if (exist == 0):
+			#<< Text preprocessing >>#
+			docid = '<DOCID>' + docid + '\n'
+			source = '<SOURCE>' + 'SNS' + '\n'
+			section = '<SECTION>' + 'instagram' + '\n'
+			implant_ptags = '<KEYWORD>' + ",".join(ptags) + '\n'
+			ref_url = '<REF_URL>' + 'https://www.instagram.com/explore/tags/' + keyword + '\n'
+			plink = '<URL>' + plink + '\n'
+			title = '<TITLE>' + '\n'
+			pcont = '<CONTENT>' + pcont + '\n'
+			pname = '<PUBLISHER>' + pname + '\n'
+			pdate = '<PUBLISH_DT>' + pdate + '\n'
+			cdate = '<CRAWL_DT>' + cdate + '\n'
+			attach_name = '<ATTACH_NAME>' + '' + '\n'
+			plink = '<ATTACH_CONTENT>' + 'likes:' + plike + '\n'
+			
 			#<< Saving to file >>#
+			new_file.write(docid)
+			new_file.write(source)
+			new_file.write(section)
+			new_file.write(implant_ptags)
+			new_file.write(ref_url)
+			new_file.write(plink)
+			new_file.write(title)
+			new_file.write(pcont)
+			new_file.write(pname)
+			new_file.write(pdate)
+			new_file.write(cdate)
+			new_file.write(attach_name)
+			new_file.write(plike)
+			
 			new_file.close()
-		else:
-			#<< Skip >>#
-			`
+			#<< Skip if exist == 1 >>#
+			
 
 	except EOFError:
 		#<< Extracting exception handler >>#
