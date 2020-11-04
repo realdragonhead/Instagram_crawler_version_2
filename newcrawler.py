@@ -281,7 +281,7 @@ for i in range(30):
 			pdate = '<PUBLISH_DT>' + pdate + '\n'
 			cdate = '<CRAWL_DT>' + cdate + '\n'
 			attach_name = '<ATTACH_NAME>' + '' + '\n'
-			plink = '<ATTACH_CONTENT>' + 'likes:' + plike + '\n'
+			plike = '<ATTACH_CONTENT>' + 'likes:' + plike
 			
 			#<< Saving to file >>#
 			new_file.write(docid)
