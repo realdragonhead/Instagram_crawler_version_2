@@ -17,6 +17,7 @@ for line in lines:
 	for keyword in keyword_list:
 		text = str(keyword)
 		text.replace(' ', '')
+		text.replace(',', '')
 
 		if (keyword == ''):
 			continue
