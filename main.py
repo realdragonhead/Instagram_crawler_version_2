@@ -13,12 +13,12 @@ lines = f.readlines()
 for line in lines:
 	print(line)
 	
-	text = lines[i]
-	text = str(text)
-	text.replace(',', '')
-	text.replace(' ', '')
-	
-	print('searching ', text, ' in Instagram')
-	subprocess.call(['python3', 'crawler_routine.py', text])
+	keyword_list = lines[i].split(",")
+
+	for keyword in keyword_list:
+		text = str(keyword)
+		text.replace(' ', '')
+		print('searching ', text, ' in Instagram')
+		subprocess.call(['python3', 'cralwer_routine.py', text])
 	
 f.close()
