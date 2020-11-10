@@ -23,6 +23,6 @@ for line in lines:
 			continue
 	
 		print('searching ', text, ' in Instagram')
-		subprocess.call(['python3', 'cralwer_routine.py', text])
+		subprocess.call(['python3', 'crawler_routine.py', text])
 	
 f.close()
