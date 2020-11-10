@@ -12,12 +12,15 @@ lines = f.readlines()
 
 for line in lines:
 	print(line)
-	
 	keyword_list = lines[i].split(",")
 
 	for keyword in keyword_list:
 		text = str(keyword)
 		text.replace(' ', '')
+
+		if (keyword == ''):
+			continue
+	
 		print('searching ', text, ' in Instagram')
 		subprocess.call(['python3', 'cralwer_routine.py', text])
 	
