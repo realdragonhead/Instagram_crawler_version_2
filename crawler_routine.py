@@ -52,13 +52,7 @@ tags_dataset = []	# for tags saving
 csv_text = []		# for handle csv text
 
 #<< Input string >>#
-keyword = 'honda'	### type keyword without spacing
-
-#%%%%%%%%
-#&&&&&&&&	replace with automatic keyword input
-#%%%$$%$$
-#<< CSV reader function for getting search keyword >>#
-## 작성해야됨. 전체 루프로 돌릴껀지 결정
+keyword = sys.argv[1]	### type keyword without spacing
 
 #<< Search target URL(Instagram) >>#
 url = "https://www.instagram.com/explore/tags/{}/".format(keyword)
